@@ -1,5 +1,6 @@
 const applicationServerPublicKey = "BBlY_5OeDkp2zl_Hx9jFxymKyK4kQKZdzoCoe0L5RqpiV2eK0t4zx-d3JPHlISZ0P1nQdSZsxuA5SRlDB0MZWLw";
-const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+const applicationServerKey = applicationServerPublicKey;
+// const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
 swRegistration.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: applicationServerKey
