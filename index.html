@@ -44,6 +44,16 @@ function subscribeUser(swRegistration) {
   });
 }
 
+function urlB64ToUint8Array(str){
+    var result = [];
+    for(var i = 0; i < str.length; i+=2){
+        result.push(parseInt(str.substring(i, i + 2), 16));
+    }
+    result = Uint8Array.from(result)
+    console.log(result);
+    return result;
+}
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register("/script.js").then(function(reg){
 
