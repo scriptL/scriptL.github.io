@@ -8,9 +8,10 @@ function subscribeUser(swRegistration) {
   // 用户同意
   .then(function(subscription) {
       console.log('User is subscribed:', JSON.stringify(subscription));
-      jQuery.post("/add-subscription.php", {subscription: JSON.stringify(subscription)}, function(result) {
-          console.log(result);
-      });
+      alert("成功")
+      // jQuery.post("/add-subscription.php", {subscription: JSON.stringify(subscription)}, function(result) {
+      //     console.log(result);
+      // });
   })
   // 用户不同意或者生成失败
   .catch(function(err) {
