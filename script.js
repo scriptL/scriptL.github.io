@@ -1,22 +1,22 @@
-const applicationServerPublicKey = "BBlY_5OeDkp2zl_Hx9jFxymKyK4kQKZdzoCoe0L5RqpiV2eK0t4zx-d3JPHlISZ0P1nQdSZsxuA5SRlDB0MZWLw";
-const applicationServerKey = applicationServerPublicKey;
-// const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-swRegistration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: applicationServerKey
-})
-// 用户同意
-.then(function(subscription) {
-    console.log('User is subscribed:', JSON.stringify(subscription));
-    alert("成功");
-    // jQuery.post("/add-subscription.php", {subscription: JSON.stringify(subscription)}, function(result) {
-    //     console.log(result);
-    // });
-})
-// 用户不同意或者生成失败
-.catch(function(err) {
-    console.log('Failed to subscribe the user: ', err);
-});
+function subscribeUser(swRegistration) {
+  const applicationServerPublicKey = "BBlY_5OeDkp2zl_Hx9jFxymKyK4kQKZdzoCoe0L5RqpiV2eK0t4zx-d3JPHlISZ0P1nQdSZsxuA5SRlDB0MZWLw";
+  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  swRegistration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: applicationServerKey
+  })
+  // 用户同意
+  .then(function(subscription) {
+      console.log('User is subscribed:', JSON.stringify(subscription));
+      jQuery.post("/add-subscription.php", {subscription: JSON.stringify(subscription)}, function(result) {
+          console.log(result);
+      });
+  })
+  // 用户不同意或者生成失败
+  .catch(function(err) {
+      console.log('Failed to subscribe the user: ', err);
+  });
+}
 
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
